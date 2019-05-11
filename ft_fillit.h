@@ -27,11 +27,10 @@
 typedef struct		s_shape
 {
 	int				x[4];
+	int				base;
 	char 			c;
 	int				width;
 	int				height;
-	int				base;
-	int				last;
 }					t_shape;
 typedef struct		s_int
 {
@@ -46,7 +45,8 @@ t_shape				**make_shapes(int	num, char *buf);
 int					read_file(const int fd, char **buf);
 void				print(char *s);
 int					check_slot(const char *buf, int i, int line, char c);
-void				convert_shape(t_shape **shape, int base);
+void				convert_shape(t_shape **shape, int base, int num);
+void				ft_print_n(char *buf);
 void				fill_shape(char *shp, char *buf);
 int					check_file(const char *buf);
 t_shape				**free_shapes(t_shape **shapes);

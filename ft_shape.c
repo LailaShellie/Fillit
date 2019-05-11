@@ -22,6 +22,8 @@ t_shape		**free_shapes(t_shape **shapes)
 		free(shapes[i]);
 		shapes[i] = 0;
 	}
+	free(shapes[i]);
+	shapes[i] = 0;
 	free(shapes);
 	shapes = 0;
 	return (0);
@@ -43,6 +45,8 @@ int 		check_exceptions(char *buf)
 	init_struct(&a, 0, 0);
 	while (a.i < 21)
 	{
+		if (buf[a.i] == '#')
+			return (0);
 		if ((a.num_of_links = check_slot(buf, a.i, a.i / 4 + 1, '#')) == 2 && buf[a.i] == '.')
 			return (1);
 		a.num = a.num_of_links;
@@ -50,10 +54,8 @@ int 		check_exceptions(char *buf)
 		if (a.num == 1 && (a.num_of_links = check_slot(buf, a.i, a.i / 4 + 1, '#')) == 2 && buf[a.i] == '.')
 			return (2);
 		a.num = 0;
-		if (buf[a.i] == '#')
-			return (0);
 	}
-	return (0);
+	return (a.num);
 }
 
 void		get_params(t_shape *shape, char *buf)
@@ -77,8 +79,6 @@ void		get_params(t_shape *shape, char *buf)
 			++a.len;
 		}
 	}
-	shape->base = 4;
-	shape->last = 1;
 }
 
 t_shape		**make_shapes(int num, char *buf)
@@ -89,17 +89,14 @@ t_shape		**make_shapes(int num, char *buf)
 	init_struct(&a, 0, 0);
 	if (!num)
 		return (0);
-	if (!(shapes = (t_shape **)calloc((num + 1), sizeof(shapes))))
+	if (!(shapes = (t_shape **)ft_memalloc(num  * sizeof(shapes))))
 		return (0);
-	shapes[num] = 0;
-	printf("!!!!!!!!!!\n");
 	while (a.i < num)
 	{
-		ft_print_n(buf);
-		printf("%d\n", a.i);
-		if (!(shapes[a.i] = (t_shape *)calloc(1, sizeof(shapes[a.i]))))
+		if (!(shapes[a.i] = (t_shape *)ft_memalloc(sizeof(*shapes[a.i]))))
 			return (0);
 		get_params(shapes[a.i], buf);
+		shapes[a.i]->base = 4;
 		buf += 21;
 		++a.i;
 	}

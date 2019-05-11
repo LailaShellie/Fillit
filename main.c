@@ -39,7 +39,9 @@ int		main(int argc, char **argv)
 	int ret_read;
 	t_shape		**shapes;
 	int 	i;
+	int j;
 
+	j = 0;
 	i = -1;
 	if (!(buf = (char *)malloc(sizeof(char) * BUFF_SIZE)))
 		return (0);
@@ -63,18 +65,30 @@ int		main(int argc, char **argv)
 	}
 	printf("(%d) - read_file\n", ret_read);
 	shapes = make_shapes(ret_read, buf);
-	free_shapes(shapes);
-//	convert_shape(shapes, 5);
-//	while (shapes != 0)
-//	{
-//		i = -1;
-//		while (++i < 4)
-//			printf("-%d", (*shapes)->x[i]);
-//		printf("\n");
-//		++shapes;
-//	}
+//	convert_shape(shapes, 5, ret_read);
+	char *str;
+
+	str = buf;
+	while (j < ret_read)
+	{
+		i = 0;
+
+		ft_print_n(str);
+		str += 21;
+		while (i < 4)
+		{
+			printf("-%d", shapes[j]->x[i]);
+			++i;
+		}
+
+		++j;
+		printf("\n");
+	}
 //	i = -1;
 //	while (++i < 4)
 //		printf("-%d", (*shapes)->x[i]);
+	free_shapes(shapes);
+	free(buf);
+	buf = 0;
 	return  (0);
 }

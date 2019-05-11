@@ -12,27 +12,28 @@
 
 #include "ft_fillit.h"
 
-void	convert_shape(t_shape **shape, int base)
+void	convert_shape(t_shape **shape, int base, int num)
 {
 	int 	i;
+	int 	j;
 
-
-	while (shape != 0)
+	j = 0;
+	i = 0;
+	while (j < num)
 	{
-		printf("~~~~\n");
-		while ((*shape)->base != base)
+		while (shape[j]->base != base)
 		{
 			i = -1;
-			if ((*shape)->base > base)
+			if (shape[j]->base > base)
 				while (++i < 4)
-					(*shape)->x[i] =(*shape)->x[i] - (*shape)->x[i] / (*shape)->base;
-			else if ((*shape)->base < base)
+					shape[j]->x[i] = shape[j]->x[i] - shape[j]->x[i] / shape[j]->base;
+			else if (shape[j]->base < base)
 				while (++i < 4)
-					(*shape)->x[i] = (*shape)->x[i] - (*shape)->x[i] / (*shape)->base;
-			(*shape)->base > base ? --((*shape)->base) :
-			++((*shape)->base);
+					shape[j]->x[i] = shape[j]->x[i] + shape[j]->x[i] / shape[j]->base;
+			shape[j]->base > base ? --(shape[j]->base) :
+			++(shape[j]->base);
 		}
-		++shape;
+		++j;
 	}
 
 }
