@@ -86,23 +86,23 @@ int		check_file(const char *buf)
 
 int 	num_of_shapes(const char *buf)
 {
-	t_int	a;
+	int i;
+	int num;
 
-	init_struct(&a, 0, 0);
-	while (buf[a.i] != 0)
+	i = 0;
+	num = 0;
+	while (buf[i] != 0)
 	{
-		if (buf[a.i] == '#')
-			++a.num;
-		++a.i;
+		if (buf[i] == '#')
+			++num;
+		++i;
 	}
-	return (a.num / 4);
+	return (num / 4);
 }
 
 int		read_file(const int fd, char **buf)
 {
-	int		ret;
-
-	if ((ret = read(fd, *buf, BUFF_SIZE)) == -1)
+	if (read(fd, *buf, BUFF_SIZE) == -1)
 		return (-1);
 	if (check_file(*buf) == -1)
 	{

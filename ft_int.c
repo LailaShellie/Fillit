@@ -15,7 +15,6 @@
 void	init_struct(t_int *a, int line, int i)
 {
 	a->i = i;
-	a->len = 0;
 	a->line = line;
 	a->num = 0;
 	a->num_of_links = 0;

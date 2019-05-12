@@ -12,37 +12,12 @@
 
 #include "ft_fillit.h"
 
-void		print(char *s)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (s[i] != 0)
-	{
-		ft_putchar(s[i]);
-		++i;
-		++j;
-		if (j == 4)
-		{
-			ft_putchar('\n');
-			j = 0;
-		}
-	}
-}
-
 int		main(int argc, char **argv)
 {
 	char	*buf;
 	int 	fd;
 	int ret_read;
-	t_shape		**shapes;
-	int 	i;
-	int j;
 
-	j = 0;
-	i = -1;
 	if (!(buf = (char *)malloc(sizeof(char) * BUFF_SIZE)))
 		return (0);
 	if (argc != 2)
@@ -64,30 +39,7 @@ int		main(int argc, char **argv)
 		return (-1);
 	}
 	printf("(%d) - read_file\n", ret_read);
-	shapes = make_shapes(ret_read, buf);
-//	convert_shape(shapes, 5, ret_read);
-	char *str;
-
-	str = buf;
-	while (j < ret_read)
-	{
-		i = 0;
-
-		ft_print_n(str);
-		str += 21;
-		while (i < 4)
-		{
-			printf("-%d", shapes[j]->x[i]);
-			++i;
-		}
-
-		++j;
-		printf("\n");
-	}
-//	i = -1;
-//	while (++i < 4)
-//		printf("-%d", (*shapes)->x[i]);
-	free_shapes(shapes);
+	make_bits(buf, ret_read);
 	free(buf);
 	buf = 0;
 	return  (0);

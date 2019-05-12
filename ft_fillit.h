@@ -22,34 +22,21 @@
 # include "libft/libft.h"
 
 # define BUFF_SIZE 546
-# define SHAPE_LEN 16
 
-typedef struct		s_shape
-{
-	int				x[4];
-	int				base;
-	char 			c;
-	int				width;
-	int				height;
-}					t_shape;
 typedef struct		s_int
 {
-	int				len;
 	int				num;
 	int				line;
 	int				i;
 	int				link;
 	int				num_of_links;
 }					t_int;
-t_shape				**make_shapes(int	num, char *buf);
 int					read_file(const int fd, char **buf);
-void				print(char *s);
+void 				make_bits(char *buf, int num);
+void				set_bits(unsigned long int *shape, char *buf);
 int					check_slot(const char *buf, int i, int line, char c);
-void				convert_shape(t_shape **shape, int base, int num);
-void				ft_print_n(char *buf);
-void				fill_shape(char *shp, char *buf);
 int					check_file(const char *buf);
-t_shape				**free_shapes(t_shape **shapes);
 void				init_struct(t_int *a, int line, int i);
+void				move_to_zero(unsigned long int **shape, int num);
 
 #endif
