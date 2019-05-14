@@ -10,60 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_fillit.h"
 
-void	move_left(unsigned long int *shape, int base)
+int 				check_x(unsigned long int *shapes, int base)
 {
 	int y;
 
 	y = 0;
 	while (y < base)
 	{
-		shape[y] >>= 1;
-		++y;
-	}
-}
-
-int		check_y_line(unsigned long int *shape, int base)
-{
-	int y;
-
-	y = 0;
-	while (y < base)
-	{
-		if ((shape[y] & 1) > 0)
+		if (shapes[y] >> base != 0)
 			return (1);
 		++y;
 	}
 	return (0);
 }
 
-void	move_to_zero(unsigned long int **shape, int base, int num)
+int 				find_base(unsigned long int **shapes, int num)
 {
-	t_int a;
+	int base;
+	int n;
+	int i;
 
-	init_struct(&a, 0 ,0);
-	while (shape[a.num] == 0)
-		++a.num;
-	while (a.num < num)
+	i = 0;
+	n = 0;
+	base = 0;
+	while (base == 0)
 	{
-		while (check_y_line(shape[a.num], base) == 0)
-			move_left(shape[a.num], base);
-		++a.num;
+		base = ft_sqrt(num * 4 + n);
+		++n;
 	}
-	a.num = 0;
-	while (a.num < num)
+	while (i < num)
 	{
-		while (shape[a.num][a.line] == 0)
-		{
-			while (a.line < base)
-			{
-				shape[a.num][a.line] ^= shape[a.num][a.line + 1];
-				shape[a.num][a.line + 1] ^= shape[a.num][a.line];
-				++a.line;
-			}
-			a.line = 0;
-		}
-		++a.num;
+		while (shapes[i][base] != 0 || check_x(shapes[i], base) != 0)
+			++base;
+		++i;
 	}
+
+	return (base);
+}
+
+int					make_matrix(unsigned long int ***shapes, int num)
+{
+	int		base;
+
+	base = find_base(*shapes, num);
+	*shapes = cut_shapes(shapes, base, num);
+	printf("!%d! - base\n", base);
+	return (base);
 }

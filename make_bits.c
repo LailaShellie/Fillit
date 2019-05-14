@@ -13,54 +13,6 @@
 #include "ft_fillit.h"
 #include "libft/libft.h"
 
-int				delete_shapes(unsigned long int **shapes, int num)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (i < num)
-	{
-		free(shapes[i]);
-		shapes[i] = 0;
-		++i;
-	}
-	free(shapes);
-	shapes = 0;
-	return (0);
-}
-
-unsigned long int	**allocate(int num)
-{
-	t_int a;
-	unsigned long int **shapes;
-
-	init_struct(&a, 0 ,0);
-	if (!(shapes = (unsigned long int **)malloc(num * sizeof(unsigned long int *))))
-		return (0);
-	while (a.i < num)
-	{
-		if (!(shapes[a.i] = (unsigned long int *) malloc(32 * sizeof(unsigned long int))))
-		{
-			delete_shapes(shapes, num);
-			return (0);
-		}
-		++a.i;
-	}
-	while (a.num < num)
-	{
-		a.i = 0;
-		while (a.i < 32)
-		{
-			shapes[a.num][a.i] = 0;
-			++a.i;
-		}
-		++a.num;
-	}
-	return (shapes);
-}
-
 void	set_bits(unsigned long int *shape, char *buf)
 {
 	unsigned long int i;
@@ -90,8 +42,10 @@ void	make_bits(char *buf, int num)
 {
 	t_int				a;
 	unsigned long int 	**shapes;
+	int 				base;
 
-	shapes = allocate(num);
+	base = 4;
+	shapes = allocate(num, MAX_BASE);
 	init_struct(&a, 0, 0);
 	while (a.num < num)
 	{
@@ -101,11 +55,12 @@ void	make_bits(char *buf, int num)
 	}
 	a.num = 0;
 	a.i = 0;
-//	move_to_zero(shapes, num);
+	move_to_zero(shapes, base, num);
+	base = make_matrix(&shapes, num);
 	while (a.num < num)
 	{
 		a.i = 0;
-		while (a.i < 32)
+		while (a.i < base)
 		{
 			printf("%lu-", shapes[a.num][a.i]);
 			++a.i;
@@ -113,6 +68,5 @@ void	make_bits(char *buf, int num)
 		printf("\n");
 		++a.num;
 	}
-
 	delete_shapes(shapes, num);
 }

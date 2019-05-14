@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 {
 	char	*buf;
 	int 	fd;
-	int ret_read;
+	int ret_read = 0;
 
 	if (!(buf = (char *)malloc(sizeof(char) * BUFF_SIZE)))
 		return (0);
