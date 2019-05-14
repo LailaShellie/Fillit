@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-void	move_left(unsigned long int *shape, int base)
+void	move_left(int *shape, int base)
 {
 	int y;
 
@@ -24,7 +24,7 @@ void	move_left(unsigned long int *shape, int base)
 	}
 }
 
-int		check_y_line(unsigned long int *shape, int base)
+int		check_y_line(int *shape, int base)
 {
 	int y;
 
@@ -38,7 +38,7 @@ int		check_y_line(unsigned long int *shape, int base)
 	return (0);
 }
 
-void	move_to_zero(unsigned long int **shape, int base, int num)
+void	move_to_zero(int **shape, int base, int num)
 {
 	t_int a;
 

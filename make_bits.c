@@ -13,11 +13,11 @@
 #include "ft_fillit.h"
 #include "libft/libft.h"
 
-void	set_bits(unsigned long int *shape, char *buf)
+void	set_bits(int *shape, char *buf)
 {
-	unsigned long int i;
-	unsigned long int x;
-	unsigned long int y;
+	int i;
+	int x;
+	int y;
 
 	i = 0;
 	x = 0;
@@ -31,7 +31,7 @@ void	set_bits(unsigned long int *shape, char *buf)
 		}
 		if (buf[i] == '#')
 		{
-			shape[y] |= (unsigned long int)1 << x;
+			shape[y] |= (int)1 << x;
 		}
 		++x;
 		++i;
@@ -41,7 +41,7 @@ void	set_bits(unsigned long int *shape, char *buf)
 void	make_bits(char *buf, int num)
 {
 	t_int				a;
-	unsigned long int 	**shapes;
+	int 	**shapes;
 	int 				base;
 
 	base = 4;
@@ -62,7 +62,7 @@ void	make_bits(char *buf, int num)
 		a.i = 0;
 		while (a.i < base)
 		{
-			printf("%lu-", shapes[a.num][a.i]);
+			printf("%d-", shapes[a.num][a.i]);
 			++a.i;
 		}
 		printf("\n");

@@ -13,7 +13,7 @@
 
 #include "ft_fillit.h"
 
-int 				check_x(unsigned long int *shapes, int base)
+int 				check_x(int *shapes, int base)
 {
 	int y;
 
@@ -27,7 +27,7 @@ int 				check_x(unsigned long int *shapes, int base)
 	return (0);
 }
 
-int 				find_base(unsigned long int **shapes, int num)
+int 				find_base(int **shapes, int num)
 {
 	int base;
 	int n;
@@ -51,7 +51,7 @@ int 				find_base(unsigned long int **shapes, int num)
 	return (base);
 }
 
-int					make_matrix(unsigned long int ***shapes, int num)
+int					make_matrix(int ***shapes, int num)
 {
 	int		base;
 

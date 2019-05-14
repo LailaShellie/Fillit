@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -12,8 +12,7 @@
 
 #include "ft_fillit.h"
 
-unsigned long int	**copy_shapes(unsigned long int **new_base,
-		unsigned long int **shapes, int base, int num)
+int	**copy_shapes(int **new_base, int **shapes, int base, int num)
 {
 	int y;
 	int n;
@@ -33,9 +32,9 @@ unsigned long int	**copy_shapes(unsigned long int **new_base,
 	return (new_base);
 }
 
-unsigned long int	**cut_shapes(unsigned long int	***shapes, int base, int num)
+int	**cut_shapes(int ***shapes, int base, int num)
 {
-	unsigned long int	**new_base;
+	int	**new_base;
 
 	new_base = allocate(num, base);
 	new_base = copy_shapes(new_base, *shapes, base, num);
@@ -43,7 +42,7 @@ unsigned long int	**cut_shapes(unsigned long int	***shapes, int base, int num)
 	return (new_base);
 }
 
-int					delete_shapes(unsigned long int **shapes, int num)
+int					delete_shapes(int **shapes, int num)
 {
 	int i;
 
@@ -59,17 +58,17 @@ int					delete_shapes(unsigned long int **shapes, int num)
 	return (0);
 }
 
-unsigned long int	**allocate(int num, int base)
+int	**allocate(int num, int base)
 {
 	t_int a;
-	unsigned long int **shapes;
+	int **shapes;
 
 	init_struct(&a, 0 ,0);
-	if (!(shapes = (unsigned long int **)malloc(num * sizeof(unsigned long int *))))
+	if (!(shapes = (int **)malloc(num * sizeof(int *))))
 		return (0);
 	while (a.i < num)
 	{
-		if (!(shapes[a.i] = (unsigned long int *)malloc(base * sizeof(unsigned long int))))
+		if (!(shapes[a.i] = (int *)malloc(base * sizeof(int))))
 		{
 			delete_shapes(shapes, num);
 			return (0);

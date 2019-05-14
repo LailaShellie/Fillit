@@ -34,16 +34,15 @@ typedef struct		s_int
 }					t_int;
 int					read_file(const int fd, char **buf);
 void 				make_bits(char *buf, int num);
-void				set_bits(unsigned long int *shape, char *buf);
+void				set_bits(int *shape, char *buf);
 int					check_slot(const char *buf, int i, int line, char c);
 int					check_file(const char *buf);
 void				init_struct(t_int *a, int line, int i);
-void				move_to_zero(unsigned long int **shape, int base, int num);
-int 				make_matrix(unsigned long int ***shapes, int num);
-unsigned long int	**copy_shapes(unsigned long int **new_base,
-								   unsigned long int **shapes, int base, int num);
-unsigned long int	**cut_shapes(unsigned long int	***shapes, int base, int num);
-int					delete_shapes(unsigned long int **shapes, int num);
-unsigned long int	**allocate(int num, int base);
+void				move_to_zero(int **shape, int base, int num);
+int 				make_matrix(int ***shapes, int num);
+int					**copy_shapes(int **new_base, int **shapes, int base, int num);
+int					**cut_shapes(int	***shapes, int base, int num);
+int					delete_shapes(int **shapes, int num);
+int					**allocate(int num, int base);
 
 #endif
