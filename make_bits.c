@@ -13,11 +13,11 @@
 #include "ft_fillit.h"
 #include "libft/libft.h"
 
-void	set_bits(int *shape, char *buf)
+void	set_bits(unsigned int *shape, char *buf)
 {
-	int i;
-	int x;
-	int y;
+	unsigned int	i;
+	unsigned int	x;
+	unsigned int	y;
 
 	i = 0;
 	x = 0;
@@ -38,11 +38,11 @@ void	set_bits(int *shape, char *buf)
 	}
 }
 
-void	make_bits(char *buf, int num)
+void	make_bits(char *buf, unsigned int num)
 {
-	t_int				a;
-	int 	**shapes;
-	int 				base;
+	t_int			a;
+	unsigned int	**shapes;
+	unsigned int	base;
 
 	base = 4;
 	shapes = allocate(num, MAX_BASE);
@@ -57,16 +57,6 @@ void	make_bits(char *buf, int num)
 	a.i = 0;
 	move_to_zero(shapes, base, num);
 	base = make_matrix(&shapes, num);
-	while (a.num < num)
-	{
-		a.i = 0;
-		while (a.i < base)
-		{
-			printf("%d-", shapes[a.num][a.i]);
-			++a.i;
-		}
-		printf("\n");
-		++a.num;
-	}
+	show_shapes(shapes, base, num);
 	delete_shapes(shapes, num);
 }

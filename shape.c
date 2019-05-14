@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -12,10 +12,30 @@
 
 #include "ft_fillit.h"
 
-int	**copy_shapes(int **new_base, int **shapes, int base, int num)
+void		show_shapes(unsigned int **shapes,
+		unsigned int base, unsigned int num)
 {
-	int y;
-	int n;
+	t_int a;
+
+	init_struct(&a, 0, 0);
+	while (a.num < num)
+	{
+		a.i = 0;
+		while (a.i < base)
+		{
+			ft_putnbr(shapes[a.num][a.i]);
+			++a.i;
+		}
+		ft_putchar('\n');
+		++a.num;
+	}
+}
+
+unsigned int	**copy_shapes(unsigned int **new_base, unsigned int **shapes,
+		unsigned int base, unsigned int num)
+{
+	unsigned int y;
+	unsigned int n;
 
 	n = 0;
 	while (n < num)
@@ -28,13 +48,13 @@ int	**copy_shapes(int **new_base, int **shapes, int base, int num)
 		}
 		++n;
 	}
-
 	return (new_base);
 }
 
-int	**cut_shapes(int ***shapes, int base, int num)
+unsigned int	**cut_shapes(unsigned int ***shapes,
+		unsigned int base, unsigned int num)
 {
-	int	**new_base;
+	unsigned int	**new_base;
 
 	new_base = allocate(num, base);
 	new_base = copy_shapes(new_base, *shapes, base, num);
@@ -42,9 +62,9 @@ int	**cut_shapes(int ***shapes, int base, int num)
 	return (new_base);
 }
 
-int					delete_shapes(int **shapes, int num)
+unsigned int	**delete_shapes(unsigned int **shapes, unsigned int num)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	while (i < num)
@@ -58,21 +78,18 @@ int					delete_shapes(int **shapes, int num)
 	return (0);
 }
 
-int	**allocate(int num, int base)
+unsigned int	**allocate(unsigned int num, unsigned int base)
 {
-	t_int a;
-	int **shapes;
+	t_int			a;
+	unsigned int	**shapes;
 
-	init_struct(&a, 0 ,0);
-	if (!(shapes = (int **)malloc(num * sizeof(int *))))
+	init_struct(&a, 0, 0);
+	if (!(shapes = (unsigned int **)malloc(num * sizeof(unsigned int *))))
 		return (0);
 	while (a.i < num)
 	{
-		if (!(shapes[a.i] = (int *)malloc(base * sizeof(int))))
-		{
-			delete_shapes(shapes, num);
-			return (0);
-		}
+		if (!(shapes[a.i] = (unsigned int *)malloc(base * sizeof(unsigned int))))
+			return (delete_shapes(shapes, num));
 		++a.i;
 	}
 	while (a.num < num)

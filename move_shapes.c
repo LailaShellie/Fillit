@@ -12,9 +12,9 @@
 
 #include "ft_fillit.h"
 
-void	move_left(int *shape, int base)
+void			move_left(unsigned int *shape, unsigned int base)
 {
-	int y;
+	unsigned int y;
 
 	y = 0;
 	while (y < base)
@@ -24,27 +24,26 @@ void	move_left(int *shape, int base)
 	}
 }
 
-int		check_y_line(int *shape, int base)
+unsigned int	check_y_line(const unsigned int *shape, unsigned int base)
 {
-	int y;
+	unsigned int y;
 
 	y = 0;
 	while (y < base)
 	{
-		if ((shape[y] & 1) > 0)
+		if ((shape[y] & (unsigned int)1) > 0)
 			return (1);
 		++y;
 	}
 	return (0);
 }
 
-void	move_to_zero(int **shape, int base, int num)
+void	move_to_zero(unsigned int **shape,
+		unsigned int base, unsigned int num)
 {
 	t_int a;
 
-	init_struct(&a, 0 ,0);
-	while (shape[a.num] == 0)
-		++a.num;
+	init_struct(&a, 0, 0);
 	while (a.num < num)
 	{
 		while (check_y_line(shape[a.num], base) == 0)

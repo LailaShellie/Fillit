@@ -26,23 +26,25 @@
 
 typedef struct		s_int
 {
-	int				num;
-	int				line;
-	int				i;
-	int				link;
-	int				num_of_links;
+	unsigned int	num;
+	unsigned int	line;
+	unsigned int	i;
+	unsigned int	link;
+	unsigned int	num_of_links;
 }					t_int;
 int					read_file(const int fd, char **buf);
-void 				make_bits(char *buf, int num);
-void				set_bits(int *shape, char *buf);
-int					check_slot(const char *buf, int i, int line, char c);
+void 				make_bits(char *buf, unsigned int num);
+void				set_bits(unsigned int *shape, char *buf);
+unsigned int		check_slot(const char *buf, unsigned int i,unsigned int line, char c);
 int					check_file(const char *buf);
-void				init_struct(t_int *a, int line, int i);
-void				move_to_zero(int **shape, int base, int num);
-int 				make_matrix(int ***shapes, int num);
-int					**copy_shapes(int **new_base, int **shapes, int base, int num);
-int					**cut_shapes(int	***shapes, int base, int num);
-int					delete_shapes(int **shapes, int num);
-int					**allocate(int num, int base);
+void				init_struct(t_int *a, unsigned int line, unsigned int i);
+void				move_to_zero(unsigned int **shape, unsigned int base, unsigned int num);
+unsigned int 		make_matrix(unsigned int ***shapes, unsigned int num);
+unsigned int		**copy_shapes(unsigned int **new_base, unsigned int **shapes,
+		unsigned int base, unsigned int num);
+unsigned int		**cut_shapes(unsigned int ***shapes, unsigned int base, unsigned int num);
+unsigned int		**delete_shapes(unsigned int **shapes, unsigned int num);
+unsigned int		**allocate(unsigned int num, unsigned int base);
+void				show_shapes(unsigned int **shapes, unsigned int base,unsigned int num);
 
 #endif

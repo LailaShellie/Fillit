@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_fillit.h"
 
-int 				check_x(int *shapes, int base)
+unsigned int	check_x(unsigned int *shapes, unsigned int base)
 {
-	int y;
+	unsigned int y;
 
 	y = 0;
 	while (y < base)
@@ -27,11 +26,11 @@ int 				check_x(int *shapes, int base)
 	return (0);
 }
 
-int 				find_base(int **shapes, int num)
+unsigned int	find_base(unsigned int **shapes, unsigned int num)
 {
-	int base;
-	int n;
-	int i;
+	unsigned int	base;
+	unsigned int	n;
+	unsigned int	i;
 
 	i = 0;
 	n = 0;
@@ -47,16 +46,14 @@ int 				find_base(int **shapes, int num)
 			++base;
 		++i;
 	}
-
 	return (base);
 }
 
-int					make_matrix(int ***shapes, int num)
+unsigned int	make_matrix(unsigned int ***shapes, unsigned int num)
 {
-	int		base;
+	unsigned int	base;
 
 	base = find_base(*shapes, num);
 	*shapes = cut_shapes(shapes, base, num);
-	printf("!%d! - base\n", base);
 	return (base);
 }

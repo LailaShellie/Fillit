@@ -12,9 +12,10 @@
 
 #include "ft_fillit.h"
 
-int		check_slot(const char *buf, int i, int line, char c)
+unsigned int	check_slot(const char *buf,
+		 unsigned int i, unsigned int line, char c)
 {
-	int num;
+	unsigned int num;
 
 	num = 0;
 	if (line != 1)
@@ -29,7 +30,7 @@ int		check_slot(const char *buf, int i, int line, char c)
 	return (num);
 }
 
-int		check_form(const char *buf)
+int				check_form(const char *buf)
 {
 	t_int	a;
 
@@ -47,16 +48,16 @@ int		check_form(const char *buf)
 		if (buf[a.i] == '\n')
 			++a.line;
 	}
-	if (buf[a.i] == '\n' && a.num == 4 && (a.num_of_links == 5
-	|| a.num_of_links == 6 || a.num_of_links == 8))
+	if (buf[a.i] == '\n' && a.num == 4
+	&& (a.num_of_links == 6 || a.num_of_links == 8))
 		return (check_form(&buf[a.i + 1]));
-	if (buf[a.i] == 0 && a.num == 4 && (a.num_of_links == 5
-	|| a.num_of_links == 6 || a.num_of_links == 8))
+	if (buf[a.i] == 0 && a.num == 4
+	&& (a.num_of_links == 6 || a.num_of_links == 8))
 		return (0);
 	return (-1);
 }
 
-int		check_file(const char *buf)
+int				check_file(const char *buf)
 {
 	t_int	a;
 
@@ -84,10 +85,10 @@ int		check_file(const char *buf)
 	return (-1);
 }
 
-int 	num_of_shapes(const char *buf)
+int				num_of_shapes(const char *buf)
 {
-	int i;
-	int num;
+	unsigned int i;
+	unsigned int num;
 
 	i = 0;
 	num = 0;
@@ -100,7 +101,7 @@ int 	num_of_shapes(const char *buf)
 	return (num / 4);
 }
 
-int		read_file(const int fd, char **buf)
+int				read_file(const int fd, char **buf)
 {
 	if (read(fd, *buf, BUFF_SIZE) == -1)
 		return (-1);

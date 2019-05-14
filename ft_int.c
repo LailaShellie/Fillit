@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-void	init_struct(t_int *a, int line, int i)
+void	init_struct(t_int *a, unsigned int line, unsigned int i)
 {
 	a->i = i;
 	a->line = line;
