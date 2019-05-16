@@ -24,6 +24,7 @@ void		show_shapes(unsigned int **shapes,
 		while (a.i < base)
 		{
 			ft_putnbr(shapes[a.num][a.i]);
+			ft_putchar('-');
 			++a.i;
 		}
 		ft_putchar('\n');
@@ -84,11 +85,11 @@ unsigned int	**allocate(unsigned int num, unsigned int base)
 	unsigned int	**shapes;
 
 	init_struct(&a, 0, 0);
-	if (!(shapes = (unsigned int **)malloc(num * sizeof(unsigned int *))))
+	if (!(shapes = (unsigned int **)ft_memalloc(num * sizeof(unsigned int *))))
 		return (0);
 	while (a.i < num)
 	{
-		if (!(shapes[a.i] = (unsigned int *)malloc(base * sizeof(unsigned int))))
+		if (!(shapes[a.i] = (unsigned int *)ft_memalloc(base * sizeof(unsigned int))))
 			return (delete_shapes(shapes, num));
 		++a.i;
 	}

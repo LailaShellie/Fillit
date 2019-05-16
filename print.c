@@ -11,53 +11,36 @@
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
-#include "libft/libft.h"
 
-void	set_bits(unsigned int *shape, char *buf)
+void	get_combinations(t_shape *combinations, unsigned int base)
 {
-	unsigned int	i;
-	unsigned int	x;
-	unsigned int	y;
+	t_shape *cur;
+	unsigned int y;
 
-	i = 0;
-	x = 0;
-	y = 0;
-	while (i < 21)
+	cur = combinations;
+	while (cur)
 	{
-		if (buf[i] == '\n')
+		y = 0;
+		while (y < base)
 		{
+			ft_putnbr((cur->shapes)[y]);
+			ft_putchar('-');
 			++y;
-			x = -1;
 		}
-		if (buf[i] == '#')
-		{
-			shape[y] |= (int)1 << x;
-		}
-		++x;
-		++i;
+		ft_putchar('\n');
+		cur = cur->next;
 	}
 }
 
-void	make_bits(char *buf, unsigned int num)
+int 	show_combinations(t_shape **combinations, unsigned int base, unsigned int num)
 {
-	t_int			a;
-	unsigned int	**shapes;
-	unsigned int	base;
+	t_int a;
 
-	base = 4;
-	shapes = allocate(num, MAX_BASE);
 	init_struct(&a, 0, 0);
-	a.line = 0;
 	while (a.num < num)
 	{
-		set_bits(shapes[a.num], buf);
-		buf += 21;
+		get_combinations(combinations[a.num], base);
 		++a.num;
 	}
-	a.num = 0;
-	a.i = 0;
-	move_to_zero(shapes, base, num);
-	base = make_matrix(&shapes, num);
-	show_shapes(shapes, base, num);
-	delete_shapes(shapes, num);
+	return (num);
 }
