@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   make_bits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 18:56:19 by lshellie          #+#    #+#             */
-/*   Updated: 2019/05/02 18:56:21 by lshellie         ###   ########.fr       */
+/*   Created: 2019/05/16 21:33:39 by lshellie          #+#    #+#             */
+/*   Updated: 2019/05/16 21:33:42 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_bits(unsigned int *shape, char *buf)
 		}
 		if (buf[i] == '#')
 		{
-			shape[y] |= (int)1 << x;
+			shape[y] |= 1 << x;
 		}
 		++x;
 		++i;
@@ -58,6 +58,11 @@ void	make_bits(char *buf, unsigned int num)
 	a.i = 0;
 	move_to_zero(shapes, base, num);
 	base = make_matrix(&shapes, num);
+	while (a.num_of_links < num)
+	{
+		move_down(shapes[a.num_of_links], base, 0);
+		++a.num_of_links;
+	}
 	show_shapes(shapes, base, num);
 	delete_shapes(shapes, num);
 }

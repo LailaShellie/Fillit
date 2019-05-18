@@ -1,51 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   move_shapes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 18:56:19 by lshellie          #+#    #+#             */
-/*   Updated: 2019/05/02 18:56:21 by lshellie         ###   ########.fr       */
+/*   Created: 2019/05/16 21:34:36 by lshellie          #+#    #+#             */
+/*   Updated: 2019/05/16 21:34:37 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-void			move_right(unsigned int *shape, unsigned int base)
+void		dup_shapes(unsigned int *dst, unsigned int *src,
+					   unsigned int base)
 {
 	unsigned int y;
 
 	y = 0;
 	while (y < base)
 	{
-		shape[y] <<= 1;
+		dst[y] = src[y];
 		++y;
 	}
 }
 
-void			move_left(unsigned int *shape, unsigned int base)
+void			move_right(unsigned int *shape, unsigned int base, unsigned int n)
 {
 	unsigned int y;
 
-	y = 0;
-	while (y < base)
+
+	while (n--)
 	{
-		shape[y] >>= 1;
-		++y;
+		y = 0;
+		while (y < base)
+		{
+			shape[y] <<= 1;
+			++y;
+		}
 	}
 }
 
-void			move_down(unsigned int *shape, unsigned int base)
+void			move_left(unsigned int *shape, unsigned int base, unsigned int n)
 {
 	unsigned int y;
 
-	y = 0;
-	while (y < base - 1)
+	while (n--)
 	{
-		shape[y] ^= shape[y + 1];
-		shape[y + 1] ^= shape[y];
-		++y;
+		y = 0;
+		while (y < base)
+		{
+			shape[y] >>= 1;
+			++y;
+		}
+	}
+}
+
+void			move_down(unsigned int *shape, unsigned int base, unsigned int n)
+{
+	unsigned int y;
+
+	while (n--)
+	{
+		y = base - 1;
+		if (shape[base - 1] == 0)
+			while (y != 0)
+			{
+				shape[y] ^= shape[y - 1];
+				shape[y - 1] ^= shape[y];
+				--y;
+			}
 	}
 }
 
@@ -72,7 +96,7 @@ void	move_to_zero(unsigned int **shape,
 	while (a.num < num)
 	{
 		while (check_y_line(shape[a.num], base, 1) == 0)
-			move_left(shape[a.num], base);
+			move_left(shape[a.num], base, 1);
 		++a.num;
 	}
 	a.num = 0;

@@ -24,16 +24,11 @@
 # define BUFF_SIZE 546
 # define MAX_BASE 32
 
-typedef struct		s_shape
+typedef struct 		s_form
 {
-	unsigned int	base;
-	unsigned int	*shapes;
-	struct s_shape	*next;
-	struct s_shape	*prev;
-	char 			c;
-	int 			status;
-}					t_shape;
-
+	unsigned int	hight;
+	unsigned int	width;
+}					t_form;
 typedef struct		s_int
 {
 	unsigned int	num;
@@ -57,12 +52,11 @@ unsigned int		**delete_shapes(unsigned int **shapes, unsigned int num);
 unsigned int		**allocate(unsigned int num, unsigned int base);
 void				show_shapes(unsigned int **shapes, unsigned int base,unsigned int num);
 unsigned int		check_y_line(const unsigned int *shape, unsigned int base, unsigned int x);
-void				move_down(unsigned int *shape, unsigned int base);
-void				move_right(unsigned int *shape, unsigned int base);
-void				move_left(unsigned int *shape, unsigned int base);
-int					make_combinations(t_shape **combinations,
-							 unsigned int *shape, unsigned int base, char c);
-int 				show_combinations(t_shape **combinations, unsigned int base, unsigned int num);
-void				free_combinations(t_shape **combinations);
+void				move_down(unsigned int *shape, unsigned int base, unsigned int n);
+void				move_right(unsigned int *shape, unsigned int base, unsigned int n);
+void				move_left(unsigned int *shape, unsigned int base, unsigned int n);
+void				dup_shapes(unsigned int *dst, unsigned int *src,
+					   unsigned int base);
+void				get_form(unsigned int *shapes, t_form	*form);
 
 #endif

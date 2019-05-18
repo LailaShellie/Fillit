@@ -1,16 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 18:56:19 by lshellie          #+#    #+#             */
-/*   Updated: 2019/05/02 18:56:21 by lshellie         ###   ########.fr       */
+/*   Created: 2019/05/16 21:34:08 by lshellie          #+#    #+#             */
+/*   Updated: 2019/05/16 21:34:10 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
+
+int 			parse_shapes(unsigned int **shapes, unsigned int num)
+{
+	t_int	a;
+
+	init_struct(&a, 0, 0);
+	while (a.num < num)
+	{
+		if (shapes[a.num][0] == 15)
+			++a.line;
+		if (shapes[a.num][0] == 1)
+		{
+			while (a.i < 4 && shapes[a.num][a.i] == 1)
+			{
+				++a.i;
+			}
+			if (a.i == 4)
+				++a.link;
+		}
+		++a.num;
+	}
+	if (a.link > 0 && a.line > 0)
+		return (1);
+	return (0);
+}
 
 unsigned int	check_x(unsigned int *shapes, unsigned int base)
 {
@@ -46,6 +71,8 @@ unsigned int	find_base(unsigned int **shapes, unsigned int num)
 			++base;
 		++i;
 	}
+	if (base == 4 && parse_shapes(shapes, num))
+		return (base + 1);
 	return (base);
 }
 

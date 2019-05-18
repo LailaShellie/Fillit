@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lshellie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 18:56:19 by lshellie          #+#    #+#             */
-/*   Updated: 2019/05/02 18:56:21 by lshellie         ###   ########.fr       */
+/*   Created: 2019/05/16 21:35:18 by lshellie          #+#    #+#             */
+/*   Updated: 2019/05/16 21:35:20 by lshellie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,29 @@ unsigned int	**allocate(unsigned int num, unsigned int base)
 		++a.num;
 	}
 	return (shapes);
+}
+
+void			get_form(unsigned int *shapes, t_form	*form)
+{
+	unsigned int 	y;
+
+	y = 0;
+	form->width = 0;
+	form->hight = 0;
+	while (y < 4)
+	{
+		if (shapes[y] != 0)
+		{
+			if (form->width < shapes[y])
+				form->width = shapes[y];
+			++(form->hight);
+		}
+		++y;
+	}
+	if (form->width == 7 || form->width == 6)
+		form->width = 3;
+	else if (form->width == 15)
+		form->width = 4;
+	else if (form->width == 3)
+		form->width = 2;
 }
