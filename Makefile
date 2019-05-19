@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c matrix.c shape.c field.c move_on_field.c
+SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c matrix.c shape.c check_shapes.c positions.c
 
 all:
-	gcc -g -Wall -Wextra -Werror -I. ft_fillit.h -L. libft/libft.a $(SRC)
+	gcc -g -Wall -Wextra -Werror -I. ft_fillit.h positions.h -L. libft/libft.a $(SRC)
 clean:
 	rm a.out
 re: clean all

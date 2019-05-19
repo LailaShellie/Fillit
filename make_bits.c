@@ -43,6 +43,7 @@ void	make_bits(char *buf, unsigned int num)
 	t_int			a;
 	unsigned int	**shapes;
 	unsigned int	base;
+	t_positions		**pos;
 
 	base = 4;
 	shapes = allocate(num, MAX_BASE);
@@ -58,9 +59,12 @@ void	make_bits(char *buf, unsigned int num)
 	a.i = 0;
 	move_to_zero(shapes, base, num);
 	base = make_matrix(&shapes, num);
-	//solution(shapes, base, num);
-	show_shapes(shapes, base, 1);
-	while (move_next(shapes[0], base) != 0)
-		show_shapes(shapes, base, 1);
+	pos = make_all_positions(shapes, base, num);
+	while (a.num < num)
+	{
+		free_pos_prev(pos[a.num]);
+		++a.num;
+	}
+	free(pos);
 	delete_shapes(shapes, num);
 }

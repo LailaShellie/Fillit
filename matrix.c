@@ -37,20 +37,6 @@ int 			parse_shapes(unsigned int **shapes, unsigned int num)
 	return (0);
 }
 
-unsigned int	check_x(unsigned int *shapes, unsigned int base)
-{
-	unsigned int y;
-
-	y = 0;
-	while (y < base)
-	{
-		if (shapes[y] >> base != 0)
-			return (1);
-		++y;
-	}
-	return (0);
-}
-
 unsigned int	find_base(unsigned int **shapes, unsigned int num)
 {
 	unsigned int	base;
@@ -67,7 +53,7 @@ unsigned int	find_base(unsigned int **shapes, unsigned int num)
 	}
 	while (i < num)
 	{
-		while (shapes[i][base] != 0 || check_x(shapes[i], base) != 0)
+		while (shapes[i][base] != 0 || check_x_line(shapes[i], base) != 0)
 			++base;
 		++i;
 	}

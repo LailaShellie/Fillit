@@ -73,18 +73,28 @@ void			move_down(unsigned int *shape, unsigned int base, unsigned int n)
 	}
 }
 
-unsigned int	check_y_line(const unsigned int *shape, unsigned int base, unsigned int x)
+int 	move_next(unsigned int *shape,
+				 unsigned int base)
 {
-	unsigned int y;
+	unsigned int	ret;
 
-	y = 0;
-	while (y < base)
+	if ((ret = check_y_line(shape, base, base)) == 0)
 	{
-		if (((shape[y] & (1 << (x - 1))) > 0))
-			return (1);
-		++y;
+		move_right(shape, base, 1);
+		return (1);
 	}
-	return (0);
+	else if (ret && shape[base - 1] == 0)
+	{
+		while (check_y_line(shape, base, 1) == 0)
+		{
+			move_left(shape, base, 1);
+		}
+		move_down(shape, base, 1);
+		return (1);
+	}
+	if (shape[base - 1] > 0 && ret)
+		return (0);
+	return (1);
 }
 
 void	move_to_zero(unsigned int **shape,

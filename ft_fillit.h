@@ -20,6 +20,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include "positions.h"
 
 # define BUFF_SIZE 546
 # define MAX_BASE 32
@@ -69,15 +70,10 @@ void				move_left(unsigned int *shape, unsigned int base, unsigned int n);
 void				dup_shapes(unsigned int *dst,const unsigned int *src,
 					   unsigned int base);
 void				get_form(const unsigned int *shapes, t_form	*form);
-unsigned int		*make_empty_field(unsigned int base);
-void				clear_field(unsigned int *field, unsigned int base);
-int					add_shape(unsigned int *shape,
-		unsigned int *field, unsigned int base);
-void				paste_shape(unsigned int *shape,
-							 unsigned int *field, unsigned int base);
-void				solution(unsigned int **shapes,
-		unsigned int base, unsigned int num);
 int 				move_next(unsigned int *shape,
 				 unsigned int base);
+int 				check_traversal(unsigned int *shape,
+						   unsigned int *shp, unsigned int base);
+unsigned int		check_x_line(unsigned int *shapes, unsigned int base);
 
 #endif
