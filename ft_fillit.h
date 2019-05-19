@@ -29,6 +29,16 @@ typedef struct 		s_form
 	unsigned int	hight;
 	unsigned int	width;
 }					t_form;
+
+typedef struct		s_iter
+{
+	unsigned int	y;
+	unsigned int	x;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	num;
+}					t_iter;
+
 typedef struct		s_int
 {
 	unsigned int	num;
@@ -37,6 +47,7 @@ typedef struct		s_int
 	unsigned int	link;
 	unsigned int	num_of_links;
 }					t_int;
+void				init_iter(t_iter *a);
 int					read_file(const int fd, char **buf);
 void 				make_bits(char *buf, unsigned int num);
 void				set_bits(unsigned int *shape, char *buf);
@@ -55,8 +66,18 @@ unsigned int		check_y_line(const unsigned int *shape, unsigned int base, unsigne
 void				move_down(unsigned int *shape, unsigned int base, unsigned int n);
 void				move_right(unsigned int *shape, unsigned int base, unsigned int n);
 void				move_left(unsigned int *shape, unsigned int base, unsigned int n);
-void				dup_shapes(unsigned int *dst, unsigned int *src,
+void				dup_shapes(unsigned int *dst,const unsigned int *src,
 					   unsigned int base);
-void				get_form(unsigned int *shapes, t_form	*form);
+void				get_form(const unsigned int *shapes, t_form	*form);
+unsigned int		*make_empty_field(unsigned int base);
+void				clear_field(unsigned int *field, unsigned int base);
+int					add_shape(unsigned int *shape,
+		unsigned int *field, unsigned int base);
+void				paste_shape(unsigned int *shape,
+							 unsigned int *field, unsigned int base);
+void				solution(unsigned int **shapes,
+		unsigned int base, unsigned int num);
+int 				move_next(unsigned int *shape,
+				 unsigned int base);
 
 #endif

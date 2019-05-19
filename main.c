@@ -32,6 +32,7 @@ int		main(int argc, char **argv)
 		buf = 0;
 		return (-1);
 	}
+	close(fd);
 	make_bits(buf, ret_read);
 	free(buf);
 	buf = 0;

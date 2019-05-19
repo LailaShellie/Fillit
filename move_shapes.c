@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-void		dup_shapes(unsigned int *dst, unsigned int *src,
+void		dup_shapes(unsigned int *dst,const unsigned int *src,
 					   unsigned int base)
 {
 	unsigned int y;

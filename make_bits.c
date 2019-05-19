@@ -58,11 +58,9 @@ void	make_bits(char *buf, unsigned int num)
 	a.i = 0;
 	move_to_zero(shapes, base, num);
 	base = make_matrix(&shapes, num);
-	while (a.num_of_links < num)
-	{
-		move_down(shapes[a.num_of_links], base, 0);
-		++a.num_of_links;
-	}
-	show_shapes(shapes, base, num);
+	//solution(shapes, base, num);
+	show_shapes(shapes, base, 1);
+	while (move_next(shapes[0], base) != 0)
+		show_shapes(shapes, base, 1);
 	delete_shapes(shapes, num);
 }

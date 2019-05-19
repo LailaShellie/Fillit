@@ -106,7 +106,7 @@ unsigned int	**allocate(unsigned int num, unsigned int base)
 	return (shapes);
 }
 
-void			get_form(unsigned int *shapes, t_form	*form)
+void			get_form(const unsigned int *shapes, t_form	*form)
 {
 	unsigned int 	y;
 
