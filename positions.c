@@ -23,7 +23,7 @@ void		free_pos_next(t_positions **pos)
 		tmp = cur->next;
 		free(cur->shape);
 		free(cur);
-		cur = cur->next;
+		cur = tmp;
 		tmp = 0;
 	}
 	cur = 0;
