@@ -97,7 +97,7 @@ int 	move_next(unsigned int *shape,
 	return (1);
 }
 
-void	move_to_zero(unsigned int **shape,
+unsigned int	**move_to_zero(unsigned int **shape,
 		unsigned int base, unsigned int num)
 {
 	t_int a;
@@ -114,7 +114,7 @@ void	move_to_zero(unsigned int **shape,
 	{
 		while (shape[a.num][a.line] == 0)
 		{
-			while (a.line < base)
+			while (a.line < base - 1) // !!!!!!!!!!!!!
 			{
 				shape[a.num][a.line] ^= shape[a.num][a.line + 1];
 				shape[a.num][a.line + 1] ^= shape[a.num][a.line];
@@ -124,4 +124,5 @@ void	move_to_zero(unsigned int **shape,
 		}
 		++a.num;
 	}
+	return (shape);
 }

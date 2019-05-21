@@ -20,12 +20,3 @@ void	init_struct(t_int *a, unsigned int line, unsigned int i)
 	a->num_of_links = 0;
 	a->link = 0;
 }
-
-void	init_iter(t_iter *a)
-{
-	a->i = 0;
-	a->x = 0;
-	a->num = 0;
-	a->y = 0;
-	a->j = 0;
-}

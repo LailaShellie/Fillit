@@ -25,20 +25,13 @@
 # define BUFF_SIZE 546
 # define MAX_BASE 32
 
-typedef struct 		s_form
+typedef struct 		s_lst
 {
-	unsigned int	hight;
-	unsigned int	width;
-}					t_form;
-
-typedef struct		s_iter
-{
-	unsigned int	y;
-	unsigned int	x;
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	num;
-}					t_iter;
+	t_positions		*pos;
+	struct s_lst	*next;
+	struct s_lst	*prev;
+//	unsigned int	num;
+}					t_lst;
 
 typedef struct		s_int
 {
@@ -48,17 +41,16 @@ typedef struct		s_int
 	unsigned int	link;
 	unsigned int	num_of_links;
 }					t_int;
-void				init_iter(t_iter *a);
 int					read_file(const int fd, char **buf);
 void 				make_bits(char *buf, unsigned int num);
 void				set_bits(unsigned int *shape, char *buf);
 unsigned int		check_slot(const char *buf, unsigned int i,unsigned int line, char c);
 int					check_file(const char *buf);
 void				init_struct(t_int *a, unsigned int line, unsigned int i);
-void				move_to_zero(unsigned int **shape, unsigned int base, unsigned int num);
+unsigned int		**move_to_zero(unsigned int **shape, unsigned int base, unsigned int num);
 unsigned int 		make_matrix(unsigned int ***shapes, unsigned int num);
 unsigned int		**copy_shapes(unsigned int **new_base, unsigned int **shapes,
-		unsigned int base, unsigned int num);
+				unsigned int base, unsigned int num);
 unsigned int		**cut_shapes(unsigned int ***shapes, unsigned int base, unsigned int num);
 unsigned int		**delete_shapes(unsigned int **shapes, unsigned int num);
 unsigned int		**allocate(unsigned int num, unsigned int base);
@@ -69,11 +61,23 @@ void				move_right(unsigned int *shape, unsigned int base, unsigned int n);
 void				move_left(unsigned int *shape, unsigned int base, unsigned int n);
 void				dup_shapes(unsigned int *dst,const unsigned int *src,
 					   unsigned int base);
-void				get_form(const unsigned int *shapes, t_form	*form);
 int 				move_next(unsigned int *shape,
 				 unsigned int base);
 int 				check_traversal(unsigned int *shape,
 						   unsigned int *shp, unsigned int base);
 unsigned int		check_x_line(unsigned int *shapes, unsigned int base);
+void				show_all_pos(t_lst *lst,
+				unsigned int base);
+void 				find_traversal(t_lst *lst,t_positions *pos, unsigned int n);
+t_lst				*make_all_positions(unsigned int **shapes,
+										 unsigned int base, unsigned int num);
+t_lst				*make_lst(t_lst *prev);
+int					find_solution(t_lst *lst);
+void				free_lst(t_lst **lst);
+int 				solution(t_lst **lst, unsigned int ***shapes, unsigned int *base, unsigned int num);
+void				show_all_pos_unactive(t_lst *lst, unsigned int base);
+void				clear_used(t_lst *lst);
+void				make_new_base(unsigned int ***shapes, unsigned int *base, unsigned int num);
+void				show_all(t_lst *lst);
 
 #endif

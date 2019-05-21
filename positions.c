@@ -12,38 +12,28 @@
 
 #include "ft_fillit.h"
 
-void		free_pos_next(t_positions **pos)
+t_lst			*make_num_lst(unsigned int num, t_lst *prev)
 {
-	t_positions		*cur;
-	t_positions		*tmp;
+	t_lst			*lst;
 
-	cur = *pos;
-	while (cur)
+	lst = 0;
+	if (num)
 	{
-		tmp = cur->next;
-		free(cur->shape);
-		free(cur);
-		cur = tmp;
-		tmp = 0;
+		lst = make_lst(prev);
+		lst->next = make_num_lst(--num, prev);
 	}
-	cur = 0;
+	return (lst);
 }
 
-void		free_pos_prev(t_positions *pos)
+t_lst			*make_lst(t_lst *prev)
 {
-	t_positions		*cur;
-	t_positions		*tmp;
-
-	cur = pos;
-	while (cur)
-	{
-		tmp = cur->prev;
-		free(cur->shape);
-		free(cur);
-		cur = tmp;
-		tmp = 0;
-	}
-	cur = 0;
+	t_lst		*lst;
+	if (!(lst = (t_lst *)malloc(sizeof(t_lst))))
+		return (0);
+	lst->next = 0;
+	lst->prev = prev;
+	lst->pos = 0;
+	return (lst);
 }
 
 t_positions		*new_pos(unsigned int *shape, unsigned int base)
@@ -57,54 +47,89 @@ t_positions		*new_pos(unsigned int *shape, unsigned int base)
 	pos->next = 0;
 	pos->prev = 0;
 	pos->status = 0;
+	pos->active = 0;
+	pos->used = 0;
 	pos->shape = (unsigned int *)ft_memalloc(4 * base);
 	dup_shapes(pos->shape, shape, base);
 	return (pos);
 }
 
-t_positions		**make_all_positions(unsigned int **shapes,
+t_lst		*make_all_positions(unsigned int **shapes,
 		unsigned int base, unsigned int num)
 {
-	t_positions		**pos;
-	t_positions		*start;
-	t_int			a;
+	t_lst			*lst;
+	t_lst			*start;
+	t_positions		*cur;
+	unsigned int	a;
+	char 			c;
 
-	pos = (t_positions **)ft_memalloc(num * sizeof(t_positions *));
-	init_struct(&a, 0, 0);
-	while (a.num < num)
+	c = 'A';
+	a = 0;
+	lst = make_num_lst(num, 0);
+	start = lst;
+	while (lst)
 	{
-		pos[a.num] = make_positions(&(pos[a.num]), shapes[a.num], base);
-		start = pos[a.num];
-		while (move_next(shapes[a.num], base) != 0)
-		{
-			pos[a.num] = make_positions(&(pos[a.num]), shapes[a.num], base);
-		}
-		while (start)
-		{
-
-			show_shapes(&((start)->shape), base, 1);
-			(start) = (start)->next;
-		}
-		printf("\n");
-		++a.num;
+		lst->pos = make_positions(&(lst->pos), shapes[a], base, c);
+		cur = lst->pos;
+		while (move_next(shapes[a], base) != 0)
+			cur = make_positions(&(cur), shapes[a], base, c);
+		lst = lst->next;
+		++c;
+		++a;
 	}
-	return (pos);
+	return (start);
 }
 
-t_positions		*make_positions(t_positions **positions, unsigned int *shape, unsigned int base)
+t_positions		*make_positions(t_positions **positions, unsigned int *shape, unsigned int base, char c)
 {
 	t_positions *pos;
 
 	pos = new_pos(shape, base);
+	pos->c = c;
 	if (*positions == 0)
-	{
 		*positions = pos;
-	}
 	else if (*positions != 0)
 	{
 		(*positions)->next = pos;
 		pos->prev = *positions;
 	}
-
 	return (pos);
+}
+void			show_all_pos(t_lst *lst, unsigned int base)
+{
+	t_positions *cur_pos;
+	t_lst		*cur_lst;
+
+	cur_lst = lst;
+	while (cur_lst)
+	{
+		cur_pos = cur_lst->pos;
+		while (cur_pos)
+		{
+			if (cur_pos->active == 1)
+				show_shapes(&(cur_pos->shape), base, 1);
+			cur_pos = cur_pos->next;
+		}
+		printf("\n");
+		cur_lst = cur_lst->next;
+	}
+}
+
+void			show_all_pos_unactive(t_lst *lst, unsigned int base)
+{
+	t_positions *cur_pos;
+	t_lst		*cur_lst;
+
+	cur_lst = lst;
+	while (cur_lst)
+	{
+		cur_pos = cur_lst->pos;
+		while (cur_pos)
+		{
+			show_shapes(&(cur_pos->shape), base, 1);
+			cur_pos = cur_pos->next;
+		}
+		printf("\n");
+		cur_lst = cur_lst->next;
+	}
 }

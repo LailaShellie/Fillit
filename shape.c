@@ -105,28 +105,3 @@ unsigned int	**allocate(unsigned int num, unsigned int base)
 	}
 	return (shapes);
 }
-
-void			get_form(const unsigned int *shapes, t_form	*form)
-{
-	unsigned int 	y;
-
-	y = 0;
-	form->width = 0;
-	form->hight = 0;
-	while (y < 4)
-	{
-		if (shapes[y] != 0)
-		{
-			if (form->width < shapes[y])
-				form->width = shapes[y];
-			++(form->hight);
-		}
-		++y;
-	}
-	if (form->width == 7 || form->width == 6)
-		form->width = 3;
-	else if (form->width == 15)
-		form->width = 4;
-	else if (form->width == 3)
-		form->width = 2;
-}

@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c matrix.c shape.c check_shapes.c positions.c
+SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c \
+    matrix.c shape.c check_shapes.c positions.c parse_lists.c \
+    free_pos.c solution.c print.c
 
 all:
 	gcc -g -Wall -Wextra -Werror -I. ft_fillit.h positions.h -L. libft/libft.a $(SRC)

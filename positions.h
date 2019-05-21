@@ -22,13 +22,13 @@ typedef struct			s_positions
 	struct s_positions	*next;
 	struct s_positions	*prev;
 	char 				c;
-	int 				status;
+	unsigned int 		status;
+	unsigned int		active;
+	unsigned int		used;
 }						t_positions;
 
-t_positions				*make_positions(t_positions **positions, unsigned int *shape, unsigned int base);
+t_positions				*make_positions(t_positions **positions, unsigned int *shape, unsigned int base, char c);
 void					free_pos_next(t_positions **pos);
-void					free_pos_prev(t_positions *pos);
-t_positions				**make_all_positions(unsigned int **shapes,
-		unsigned int base, unsigned int num);
+void					free_pos_prev(t_positions **pos);
 
 #endif
