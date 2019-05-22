@@ -13,9 +13,11 @@
 SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c \
     matrix.c shape.c check_shapes.c positions.c parse_lists.c \
     free_pos.c solution.c print.c
-
+GCC = gcc -Wall -Wextra -Werror
+HEADERS = ft_fillit.h positions.h
+LIB = -L. libft/libft.a
 all:
-	gcc -g -Wall -Wextra -Werror -I. ft_fillit.h positions.h -L. libft/libft.a $(SRC)
+	 $(GCC) -c $(HEADERS) $(SRC)
 clean:
 	rm a.out
 re: clean all

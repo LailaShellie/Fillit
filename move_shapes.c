@@ -114,7 +114,7 @@ unsigned int	**move_to_zero(unsigned int **shape,
 	{
 		while (shape[a.num][a.line] == 0)
 		{
-			while (a.line < base - 1) // !!!!!!!!!!!!!
+			while (a.line < base - 1)
 			{
 				shape[a.num][a.line] ^= shape[a.num][a.line + 1];
 				shape[a.num][a.line + 1] ^= shape[a.num][a.line];

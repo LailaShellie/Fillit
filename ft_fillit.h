@@ -78,6 +78,6 @@ int 				solution(t_lst **lst, unsigned int ***shapes, unsigned int *base, unsign
 void				show_all_pos_unactive(t_lst *lst, unsigned int base);
 void				clear_used(t_lst *lst);
 void				make_new_base(unsigned int ***shapes, unsigned int *base, unsigned int num);
-void				show_all(t_lst *lst);
+void				show_all(t_lst *lst, unsigned int base);
 
 #endif

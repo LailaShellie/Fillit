@@ -65,10 +65,9 @@ int 	solution(t_lst **lst, unsigned int ***shapes, unsigned int *base, unsigned 
 {
 	t_lst			*new_lst;
 
-
+	//find_solution(*lst);
 	if (find_solution(*lst) != 1)
 	{
-//		printf("!!!!!!!!!!!!!!!!!!\n");
 		make_new_base(shapes, base, num);
 		new_lst = make_all_positions(*shapes, *base, num);
 		free_lst(lst);
