@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-void		free_pos_next(t_positions **pos)
+void	free_pos_next(t_positions **pos)
 {
 	t_positions		*cur;
 	t_positions		*tmp;
@@ -30,28 +30,9 @@ void		free_pos_next(t_positions **pos)
 	*pos = 0;
 }
 
-void		free_pos_prev(t_positions **pos)
-{
-	t_positions		*cur;
-	t_positions		*tmp;
-
-	cur = *pos;
-	while (cur)
-	{
-		tmp = cur->prev;
-		free(cur->shape);
-		free(cur);
-		cur = tmp;
-		tmp = 0;
-	}
-	cur = 0;
-	*pos = 0;
-}
-
-void		free_lst(t_lst **lst)
+void	free_lst(t_lst **lst)
 {
 	t_lst *cur;
-
 
 	while (*lst)
 	{

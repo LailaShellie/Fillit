@@ -28,11 +28,13 @@ t_lst			*make_num_lst(unsigned int num, t_lst *prev)
 t_lst			*make_lst(t_lst *prev)
 {
 	t_lst		*lst;
+
 	if (!(lst = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
 	lst->next = 0;
 	lst->prev = prev;
 	lst->pos = 0;
+	lst->same = 0;
 	return (lst);
 }
 
@@ -54,14 +56,14 @@ t_positions		*new_pos(unsigned int *shape, unsigned int base)
 	return (pos);
 }
 
-t_lst		*make_all_positions(unsigned int **shapes,
+t_lst			*make_all_positions(unsigned int **shapes,
 		unsigned int base, unsigned int num)
 {
 	t_lst			*lst;
 	t_lst			*start;
 	t_positions		*cur;
 	unsigned int	a;
-	char 			c;
+	char			c;
 
 	c = 'A';
 	a = 0;
@@ -80,7 +82,8 @@ t_lst		*make_all_positions(unsigned int **shapes,
 	return (start);
 }
 
-t_positions		*make_positions(t_positions **positions, unsigned int *shape, unsigned int base, char c)
+t_positions		*make_positions(t_positions **positions,
+		unsigned int *shape, unsigned int base, char c)
 {
 	t_positions *pos;
 
@@ -94,42 +97,4 @@ t_positions		*make_positions(t_positions **positions, unsigned int *shape, unsig
 		pos->prev = *positions;
 	}
 	return (pos);
-}
-void			show_all_pos(t_lst *lst, unsigned int base)
-{
-	t_positions *cur_pos;
-	t_lst		*cur_lst;
-
-	cur_lst = lst;
-	while (cur_lst)
-	{
-		cur_pos = cur_lst->pos;
-		while (cur_pos)
-		{
-			if (cur_pos->active == 1)
-				show_shapes(&(cur_pos->shape), base, 1);
-			cur_pos = cur_pos->next;
-		}
-		printf("\n");
-		cur_lst = cur_lst->next;
-	}
-}
-
-void			show_all_pos_unactive(t_lst *lst, unsigned int base)
-{
-	t_positions *cur_pos;
-	t_lst		*cur_lst;
-
-	cur_lst = lst;
-	while (cur_lst)
-	{
-		cur_pos = cur_lst->pos;
-		while (cur_pos)
-		{
-			show_shapes(&(cur_pos->shape), base, 1);
-			cur_pos = cur_pos->next;
-		}
-		printf("\n");
-		cur_lst = cur_lst->next;
-	}
 }

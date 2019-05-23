@@ -13,7 +13,7 @@
 #include "ft_fillit.h"
 
 unsigned int	check_slot(const char *buf,
-		 unsigned int i, unsigned int line, char c)
+		unsigned int i, unsigned int line, char c)
 {
 	unsigned int num;
 
@@ -107,12 +107,12 @@ int				read_file(const int fd, char **buf)
 		return (-1);
 	if (check_file(*buf) == -1)
 	{
-		printf("!Invalid file!\n");
+		ft_putstr("error\n");
 		return (-1);
 	}
 	if (check_form(*buf) == -1)
 	{
-		printf("!!Invalid shape!!\n");
+		ft_putstr("error\n");
 		return (-1);
 	}
 	return (num_of_shapes(*buf));

@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-void		show_shapes(unsigned int **shapes,
+void				show_shapes(unsigned int **shapes,
 		unsigned int base, unsigned int num)
 {
 	t_int a;
@@ -32,8 +32,8 @@ void		show_shapes(unsigned int **shapes,
 	}
 }
 
-unsigned int	**copy_shapes(unsigned int **new_base, unsigned int **shapes,
-		unsigned int base, unsigned int num)
+unsigned int		**copy_shapes(unsigned int **new_base,
+		unsigned int **shapes, unsigned int base, unsigned int num)
 {
 	unsigned int y;
 	unsigned int n;
@@ -52,7 +52,7 @@ unsigned int	**copy_shapes(unsigned int **new_base, unsigned int **shapes,
 	return (new_base);
 }
 
-unsigned int	**cut_shapes(unsigned int ***shapes,
+unsigned int		**cut_shapes(unsigned int ***shapes,
 		unsigned int base, unsigned int num)
 {
 	unsigned int	**new_base;
@@ -63,7 +63,7 @@ unsigned int	**cut_shapes(unsigned int ***shapes,
 	return (new_base);
 }
 
-unsigned int	**delete_shapes(unsigned int **shapes, unsigned int num)
+unsigned int		**delete_shapes(unsigned int **shapes, unsigned int num)
 {
 	unsigned int i;
 
@@ -79,7 +79,7 @@ unsigned int	**delete_shapes(unsigned int **shapes, unsigned int num)
 	return (0);
 }
 
-unsigned int	**allocate(unsigned int num, unsigned int base)
+unsigned int		**allocate(unsigned int num, unsigned int base)
 {
 	t_int			a;
 	unsigned int	**shapes;
@@ -89,7 +89,8 @@ unsigned int	**allocate(unsigned int num, unsigned int base)
 		return (0);
 	while (a.i < num)
 	{
-		if (!(shapes[a.i] = (unsigned int *)ft_memalloc(base * sizeof(unsigned int))))
+		if (!(shapes[a.i] = (unsigned int *)ft_memalloc(base *
+				sizeof(unsigned int))))
 			return (delete_shapes(shapes, num));
 		++a.i;
 	}

@@ -12,7 +12,8 @@
 
 #include "ft_fillit.h"
 
-void			prepare_print(char *buf, unsigned int len, unsigned int base)
+void			prepare_print(char *buf,
+		unsigned int len, unsigned int base)
 {
 	unsigned int i;
 	unsigned int x;
@@ -28,14 +29,14 @@ void			prepare_print(char *buf, unsigned int len, unsigned int base)
 		}
 		else if (x != base)
 			buf[i] = '.';
-
 		++i;
 		++x;
 	}
 	buf[i - 1] = 0;
 }
 
-void			set_sym(unsigned int *shape, char *buf, char c, unsigned int base)
+void			set_sym(unsigned int *shape,
+		char *buf, char c, unsigned int base)
 {
 	unsigned int x;
 	unsigned int y;
@@ -61,7 +62,8 @@ void			set_sym(unsigned int *shape, char *buf, char c, unsigned int base)
 	}
 }
 
-char 			get_sym(t_positions *pos, char *buf, unsigned int base)
+char			get_sym(t_positions *pos,
+		char *buf, unsigned int base)
 {
 	unsigned int i;
 
@@ -77,10 +79,12 @@ char 			get_sym(t_positions *pos, char *buf, unsigned int base)
 	return (0);
 }
 
-void			show_all(t_lst *lst, unsigned int base)
+void			show_all(t_lst *lst,
+		unsigned int base)
 {
-	unsigned int len;
-	char	*buf;
+	unsigned int	len;
+	char			*buf;
+
 	len = base * (base + 1) + 1;
 	if (!(buf = (char *)ft_memalloc(len)))
 		return ;
@@ -90,5 +94,5 @@ void			show_all(t_lst *lst, unsigned int base)
 		get_sym(lst->pos, buf, base);
 		lst = lst->next;
 	}
-	printf("%s\n", buf);
+	ft_putstr(buf);
 }

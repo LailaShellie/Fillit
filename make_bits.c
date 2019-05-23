@@ -60,8 +60,7 @@ void	make_bits(char *buf, unsigned int num)
 	move_to_zero(shapes, base, num);
 	base = make_matrix(&shapes, num);
 	lst = make_all_positions(shapes, base, num);
-	printf("~%d~\n", solution(&lst, &shapes, &base, num));
-	show_all_pos_unactive(lst, base);
+	solution(&lst, &shapes, &base, num);
 	show_all(lst, base);
 	free_lst(&lst);
 	delete_shapes(shapes, num);

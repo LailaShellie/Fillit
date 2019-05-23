@@ -12,6 +12,30 @@
 
 #include "ft_fillit.h"
 
+int			move_next(unsigned int *shape,
+		unsigned int base)
+{
+	unsigned int	ret;
+
+	if ((ret = check_y_line(shape, base, base)) == 0)
+	{
+		move_right(shape, base, 1);
+		return (1);
+	}
+	else if (ret && shape[base - 1] == 0)
+	{
+		while (check_y_line(shape, base, 1) == 0)
+		{
+			move_left(shape, base, 1);
+		}
+		move_down(shape, base, 1);
+		return (1);
+	}
+	if (shape[base - 1] > 0 && ret)
+		return (0);
+	return (1);
+}
+
 void		clear_used(t_lst *lst)
 {
 	t_lst			*cur_lst;
@@ -32,7 +56,8 @@ void		clear_used(t_lst *lst)
 	}
 }
 
-void 		find_traversal(t_lst *lst,t_positions *pos, unsigned int n)
+void		find_traversal(t_lst *lst,
+		t_positions *pos, unsigned int n)
 {
 	t_lst			*cur_lst;
 	t_positions		*cur_pos;

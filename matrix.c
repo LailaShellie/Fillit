@@ -12,7 +12,7 @@
 
 #include "ft_fillit.h"
 
-int 			parse_shapes(unsigned int **shapes, unsigned int num)
+int				parse_shapes(unsigned int **shapes, unsigned int num)
 {
 	t_int	a;
 

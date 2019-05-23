@@ -12,8 +12,23 @@
 
 #include "ft_fillit.h"
 
-int 		check_traversal(unsigned int *shape,
-						   unsigned int *shp, unsigned int base)
+int 			compare_shapes(unsigned int *shape,
+		unsigned int *shp)
+{
+	unsigned  int y;
+
+	y = 0;
+	while (y < 4)
+	{
+		if ((shape[y] ^ shp[y]) != 0)
+			return (0);
+		++y;
+	}
+	return (1);
+}
+
+int				check_traversal(unsigned int *shape,
+		unsigned int *shp, unsigned int base)
 {
 	unsigned int	y;
 
@@ -27,7 +42,8 @@ int 		check_traversal(unsigned int *shape,
 	return (0);
 }
 
-unsigned int	check_y_line(const unsigned int *shape, unsigned int base, unsigned int x)
+unsigned int	check_y_line(const unsigned int *shape,
+		unsigned int base, unsigned int x)
 {
 	unsigned int y;
 
@@ -41,7 +57,8 @@ unsigned int	check_y_line(const unsigned int *shape, unsigned int base, unsigned
 	return (0);
 }
 
-unsigned int	check_x_line(unsigned int *shapes, unsigned int base)
+unsigned int	check_x_line(unsigned int *shapes,
+		unsigned int base)
 {
 	unsigned int y;
 
