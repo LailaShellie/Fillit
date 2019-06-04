@@ -103,7 +103,7 @@ void					clear_used(t_lst *lst);
 void					make_new_base(unsigned int ***shapes,
 		unsigned int *base, unsigned int num);
 void					show_all(t_lst *lst, unsigned int base);
-int 					compare_shapes(unsigned int *shape,
+int						compare_shapes(unsigned int *shape,
 		unsigned int *shp);
 
 #endif

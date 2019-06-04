@@ -41,7 +41,6 @@ int				find_solution(t_lst *lst)
 	t_lst		*cur_lst;
 	t_positions	*cur_pos;
 
-
 	if (!lst)
 		return (1);
 	check_same_shapes(lst);

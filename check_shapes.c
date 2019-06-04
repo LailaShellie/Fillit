@@ -12,10 +12,10 @@
 
 #include "ft_fillit.h"
 
-int 			compare_shapes(unsigned int *shape,
+int				compare_shapes(unsigned int *shape,
 		unsigned int *shp)
 {
-	unsigned  int y;
+	unsigned int y;
 
 	y = 0;
 	while (y < 4)

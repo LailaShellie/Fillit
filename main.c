@@ -20,10 +20,12 @@ int		main(int argc, char **argv)
 
 	ret_read = 0;
 	if (argc != 2)
+	{
+		ft_putstr("usage: ./fillit source_file\n")
 		return (0);
+	}
 	if (!(buf = (char *)malloc(sizeof(char) * BUFF_SIZE)))
 		return (0);
-
 	ft_bzero(buf, BUFF_SIZE);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		return (0);
