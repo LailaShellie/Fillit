@@ -39,7 +39,6 @@ typedef struct			s_lst
 	t_positions			*pos;
 	struct s_lst		*next;
 	struct s_lst		*prev;
-	unsigned int		same;
 }						t_lst;
 
 typedef struct			s_int

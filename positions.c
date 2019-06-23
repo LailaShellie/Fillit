@@ -34,7 +34,6 @@ t_lst			*make_lst(t_lst *prev)
 	lst->next = 0;
 	lst->prev = prev;
 	lst->pos = 0;
-	lst->same = 0;
 	return (lst);
 }
 
