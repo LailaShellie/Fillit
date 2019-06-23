@@ -38,6 +38,5 @@ int		main(int argc, char **argv)
 	close(fd);
 	make_bits(buf, ret_read);
 	free(buf);
-	buf = 0;
 	return (0);
 }
