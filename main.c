@@ -12,7 +12,13 @@
 
 #include "ft_fillit.h"
 
-int		main(int argc, char **argv)
+static int	error(char *buf)
+{
+	free(buf);
+	return (-1);
+}
+
+int			main(int argc, char **argv)
 {
 	char			*buf;
 	int				fd;
@@ -28,7 +34,7 @@ int		main(int argc, char **argv)
 		return (0);
 	ft_bzero(buf, BUFF_SIZE);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return (0);
+		return (error(buf));
 	if ((ret_read = read_file(fd, &buf)) == -1)
 	{
 		free(buf);

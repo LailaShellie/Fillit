@@ -16,7 +16,7 @@ SRC = main.c ft_int.c check_file.c make_bits.c move_shapes.c \
 OFILES = main.o ft_int.o check_file.o make_bits.o move_shapes.o \
 		 matrix.o shape.o check_shapes.o positions.o parse_lists.o \
 		 free_pos.o solution.o print.o
-GCC = gcc -Wall -Wextra -Werror
+GCC = gcc -Wall -Wextra -Werror -g
 HEADERS = ft_fillit.h
 NAME = fillit
 LIB = ./libft/libft.a

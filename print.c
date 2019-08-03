@@ -95,4 +95,5 @@ void			show_all(t_lst *lst,
 		lst = lst->next;
 	}
 	ft_putstr(buf);
+	free(buf);
 }
